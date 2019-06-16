@@ -10,17 +10,17 @@ import {
 
 export default class App extends Component {
 	state = {
-		opacity: new Animated.Value(1)
+		translate: new Animated.Value(0)
 	};
 
 	pressHandler = () => {
-		Animated.timing(this.state.opacity, {
-			toValue: 0,
-			duration: 350
+		Animated.timing(this.state.translate, {
+			toValue: 300,
+			duration: 1500
 		}).start(() => {
-			Animated.timing(this.state.opacity, {
-				toValue: 1,
-				duration: 500
+			Animated.timing(this.state.translate, {
+				toValue: 0,
+				duration: 1000
 			}).start();
 		});
 	};
@@ -34,7 +34,11 @@ export default class App extends Component {
 							width: 100,
 							height: 100,
 							backgroundColor: "orange",
-							opacity: this.state.opacity
+							transform: [
+								{
+									translateY: this.state.translate
+								}
+							]
 						}}
 					/>
 				</TouchableWithoutFeedback>
