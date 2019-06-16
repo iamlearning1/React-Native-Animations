@@ -10,14 +10,14 @@ import {
 
 export default class App extends Component {
 	state = {
-		scale: new Animated.Value(1)
+		dimensions: new Animated.Value(150)
 	};
 
 	pressHandler = () => {
-		Animated.timing(this.state.scale, {
-			toValue: 2,
+		Animated.timing(this.state.dimensions, {
+			toValue: 0,
 			duration: 2000
-		}).start(() => this.state.scale.setValue(1));
+		}).start();
 	};
 
 	render() {
@@ -26,14 +26,9 @@ export default class App extends Component {
 				<TouchableWithoutFeedback onPress={this.pressHandler}>
 					<Animated.View
 						style={{
-							width: 100,
-							height: 100,
 							backgroundColor: "orange",
-							transform: [
-								{
-									scaleX: this.state.scale
-								}
-							]
+							width: 150,
+							height: this.state.dimensions
 						}}
 					/>
 				</TouchableWithoutFeedback>
