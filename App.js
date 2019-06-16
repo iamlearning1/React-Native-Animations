@@ -10,19 +10,14 @@ import {
 
 export default class App extends Component {
 	state = {
-		translate: new Animated.Value(0)
+		scale: new Animated.Value(1)
 	};
 
 	pressHandler = () => {
-		Animated.timing(this.state.translate, {
-			toValue: 300,
-			duration: 1500
-		}).start(() => {
-			Animated.timing(this.state.translate, {
-				toValue: 0,
-				duration: 1000
-			}).start();
-		});
+		Animated.timing(this.state.scale, {
+			toValue: 2,
+			duration: 2000
+		}).start(() => this.state.scale.setValue(1));
 	};
 
 	render() {
@@ -36,7 +31,7 @@ export default class App extends Component {
 							backgroundColor: "orange",
 							transform: [
 								{
-									translateY: this.state.translate
+									scaleX: this.state.scale
 								}
 							]
 						}}
