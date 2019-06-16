@@ -10,25 +10,30 @@ import {
 
 export default class App extends Component {
 	state = {
-		dimensions: new Animated.Value(150)
+		animation: new Animated.Value(0)
 	};
 
 	pressHandler = () => {
-		Animated.timing(this.state.dimensions, {
-			toValue: 0,
+		Animated.timing(this.state.animation, {
+			toValue: 10,
 			duration: 2000
 		}).start();
 	};
 
 	render() {
+		const viewBg = this.state.animation.interpolate({
+			inputRange: [0, 10],
+			outputRange: ["rgba(212, 45, 89, 1)", "rgba(89, 45, 212, 1)"]
+		});
+
 		return (
 			<View style={styles.container}>
 				<TouchableWithoutFeedback onPress={this.pressHandler}>
 					<Animated.View
 						style={{
-							backgroundColor: "orange",
 							width: 150,
-							height: this.state.dimensions
+							height: 150,
+							backgroundColor: viewBg
 						}}
 					/>
 				</TouchableWithoutFeedback>
