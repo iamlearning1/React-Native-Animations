@@ -15,15 +15,15 @@ export default class App extends Component {
 
 	pressHandler = () => {
 		Animated.timing(this.state.animation, {
-			toValue: 10,
+			toValue: 360,
 			duration: 2000
 		}).start();
 	};
 
 	render() {
-		const viewBg = this.state.animation.interpolate({
-			inputRange: [0, 10],
-			outputRange: ["rgba(212, 45, 89, 1)", "rgba(89, 45, 212, 1)"]
+		const rotate = this.state.animation.interpolate({
+			inputRange: [0, 360],
+			outputRange: ["0deg", "3600deg"]
 		});
 
 		return (
@@ -33,7 +33,8 @@ export default class App extends Component {
 						style={{
 							width: 150,
 							height: 150,
-							backgroundColor: viewBg
+							backgroundColor: "pink",
+							transform: [{ rotate }]
 						}}
 					/>
 				</TouchableWithoutFeedback>
